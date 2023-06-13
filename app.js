@@ -103,4 +103,41 @@ const data = [
   // Array.prototype.reduce()
   // 7. Count the number of instances for each of the data items. The reduce should return an object where the keys are 'car', 'truck', etc. and the values are the count.
   // Hint: Since you want to return an object, be sure to pass an empty {} for the initial value of the "accumulator".
+
+  const mapItems = data.reduce(function(accumulator,value){
+    //at first it won't find anything inside but after the second or third iteration
+    //it will able to find values of the same type within the accumulator and so it will increase the count
+    if (value in accumulator){
+        accumulator[value]++
+    }else{
+        //here it adds into the accumulator the value with 1 starting occurence
+        accumulator[value] = 1;
+    }
+    //finally the accumulator  object has been filled with all the possible  individual accumulator for each value{car: 5}
+    return accumulator;
+  },{}) //here the {} is the empty object that is passed to the acculumator.
+
+  console.log(mapItems);
+
+
+  const devs = [
+    { name: 'Wes', year: 1988 },
+    { name: 'Kait', year: 1986 },
+    { name: 'Irv', year: 1970 },
+    { name: 'Lux', year: 2015 }
+  ];
+  
+  // Array.prototype.some()
+  // 8. Check if at least one person is 19 or older?
+  // Hint: To get today's year, use the getFullYear method of new Date(), i.e., new Date().getFullYear()
+  const todayDate = new Date().getFullYear();
+  const is19 = devs.some((dev) => (todayDate - dev.year) > 19 || (todayDate - dev.year) === 19);
+  console.log(is19);
+
+  //Displaying all the devs full age
+  devs.forEach(function(age){
+    console.log(todayDate - age.year);
+  })
+
+
   
