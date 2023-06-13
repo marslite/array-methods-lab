@@ -19,6 +19,7 @@ const inventors = [
 // 1. Filter the array of inventors into a new array containing only the inventors born in the 1500's
 
 const yob = inventors.filter((inventor) => inventor.year > 1500 && inventor.year < 1600);
+console.log('#1')
 console.log(yob);
 
 // Array.prototype.map()
@@ -31,7 +32,7 @@ const firstAndLast = inventors.map(function(inventor){
     const last = inventor.last;
     return {first, last }
 })
-
+console.log('#2');
 console.log(firstAndLast);
 
 // Array.prototype.sort()
@@ -42,25 +43,45 @@ const inventorsAge = inventors.map(function(age){
 
 // const sortedAge = inventors.sort();
 const sortedAge = inventorsAge.sort();
+console.log('#3');
 console.log(sortedAge);
 
 // Array.prototype.find()
 // 4. Find the inventor object with the first name of 'Ada'
 
 const findAda = inventors.find((investor) => investor.first === 'Ada');
+console.log('#4');
 console.log(findAda);
 
 // Array.prototype.reduce()
 // 5. How many years did all the inventors live?
 
-const yearsInt = inventorsAge.map(value => parseInt(value));
+const retrievedAge = inventors.map(function(age){
+    return[age.passed- age.year]
+})
+
+console.log("Retrieved age",retrievedAge);
+
+const yearsInt = retrievedAge.map(value => parseInt(value));
+console.log('#5 Years in int');
 console.log(yearsInt); 
 
-const yearsLived = yearsInt.reduce((accumulator,item) => {
-    return accumulator + item;
-},0);
+// const yearsLived = yearsInt.reduce((accumulator,item) => {
+//     return accumulator + item;
+// },0);
 
-console.log(yearsLived)
+const yearsLived = yearsInt.reduce(function(accumulator,value){
+    accumulator += value;
+    return accumulator
+},0)
+console.log('#5');
+let sumAge = 0;
+yearsInt.forEach(function(inv){
+    sumAge += inv;
+
+})
+console.log('Sum age', sumAge);
+// console.log(yearsLived)
 
 //Checking if the sum given by yearsLived is correct
 let summ = 0;
@@ -82,29 +103,30 @@ const people = [
     'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank',
     'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony',
     'Blake, William'
-  ];
-  
-  // Array.prototype.map()
-  // 6. Map the people array such that the new array consists of strings with the names formatted as "First Last", e.g., "Becker, Carl" should be mapped to "Carl Becker".
-  // Hint: As a start, consider using the String.prototype.split method to "split" the string using ', ' as the separator
+];
+
+// Array.prototype.map()
+// 6. Map the people array such that the new array consists of strings with the names formatted as "First Last", e.g., "Becker, Carl" should be mapped to "Carl Becker".
+// Hint: As a start, consider using the String.prototype.split method to "split" the string using ', ' as the separator
 
 
 const peopleSplit = people.map(item => item.split(","));
 const mapPeople = peopleSplit.map(item => item[1] + " " + item[0]);
+console.log('#6');
 console.log(mapPeople);
-  
-  
+
+
 
 const data = [
     'car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van',
     'bike', 'walk', 'car', 'van', 'car', 'truck'
-  ];
-  
-  // Array.prototype.reduce()
-  // 7. Count the number of instances for each of the data items. The reduce should return an object where the keys are 'car', 'truck', etc. and the values are the count.
-  // Hint: Since you want to return an object, be sure to pass an empty {} for the initial value of the "accumulator".
+];
 
-  const mapItems = data.reduce(function(accumulator,value){
+// Array.prototype.reduce()
+// 7. Count the number of instances for each of the data items. The reduce should return an object where the keys are 'car', 'truck', etc. and the values are the count.
+// Hint: Since you want to return an object, be sure to pass an empty {} for the initial value of the "accumulator".
+
+const mapItems = data.reduce(function(accumulator,value){
     //at first it won't find anything inside but after the second or third iteration
     //it will able to find values of the same type within the accumulator and so it will increase the count
     if (value in accumulator){
@@ -115,9 +137,10 @@ const data = [
     }
     //finally the accumulator  object has been filled with all the possible  individual accumulator for each value{car: 5}
     return accumulator;
-  },{}) //here the {} is the empty object that is passed to the acculumator.
+},{}) //here the {} is the empty object that is passed to the acculumator.
 
-  console.log(mapItems);
+console.log('#7');
+console.log(mapItems);
 
 
   const devs = [
@@ -132,6 +155,7 @@ const data = [
   // Hint: To get today's year, use the getFullYear method of new Date(), i.e., new Date().getFullYear()
   const todayDate = new Date().getFullYear();
   const is19 = devs.some((dev) => (todayDate - dev.year) > 19 || (todayDate - dev.year) === 19);
+  console.log('#8');
   console.log(is19);
 
   //Displaying all the devs full age
@@ -140,4 +164,37 @@ const data = [
   })
 
 
+// Array.prototype.every()
+// 9. Check if everyone is 19 or older?
+
+const isEveryone19 = devs.every((dev) => (todayDate - dev.year) > 19 || (todayDate - dev.year) === 19);
+console.log('#9');
+console.log(isEveryone19);
+
+
+
+
+const comments = [
+    { text: 'Love this!', id: 523423 },
+    { text: 'Super good', id: 823423 },
+    { text: 'You are the best', id: 2039842 },
+    { text: 'Ramen is my fav food ever', id: 123523 },
+    { text: 'Nice Nice Nice!', id: 542328 }
+  ];
+  
+  // Array.prototype.find()
+  // 10. Find the comment with the id of 823423
+  
+  //Remember to do not confuse String with Integers while using the find() method.
+const search = comments.find((msg) => msg.id === 823423);
+console.log('#10');
+console.log(search);
+  
+  // Array.prototype.findIndex()
+  // 11. Find the index of the comment with an id of 123523
+
+  const searchIndex = comments.findIndex((msg)=> msg.id === 123523 );
+  console.log('#11');
+  console.log(searchIndex);
+  
   
