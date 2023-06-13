@@ -62,8 +62,45 @@ const yearsLived = yearsInt.reduce((accumulator,item) => {
 
 console.log(yearsLived)
 
+//Checking if the sum given by yearsLived is correct
 let summ = 0;
 const sum = yearsInt.forEach(function(item){
     summ += item;
 });
 console.log(summ);
+
+
+const people = [
+    'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry',
+    'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul',
+    'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David',
+    'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana',
+    'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar',
+    'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric',
+    'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell',
+    'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph',
+    'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank',
+    'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony',
+    'Blake, William'
+  ];
+  
+  // Array.prototype.map()
+  // 6. Map the people array such that the new array consists of strings with the names formatted as "First Last", e.g., "Becker, Carl" should be mapped to "Carl Becker".
+  // Hint: As a start, consider using the String.prototype.split method to "split" the string using ', ' as the separator
+
+
+const peopleSplit = people.map(item => item.split(","));
+const mapPeople = peopleSplit.map(item => item[1] + " " + item[0]);
+console.log(mapPeople);
+  
+  
+
+const data = [
+    'car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van',
+    'bike', 'walk', 'car', 'van', 'car', 'truck'
+  ];
+  
+  // Array.prototype.reduce()
+  // 7. Count the number of instances for each of the data items. The reduce should return an object where the keys are 'car', 'truck', etc. and the values are the count.
+  // Hint: Since you want to return an object, be sure to pass an empty {} for the initial value of the "accumulator".
+  
